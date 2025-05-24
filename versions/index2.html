@@ -1,0 +1,1509 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moto Express | Entregas Rápidas em MG, SP e GO - A partir de R$12</title>
+    <meta name="description" content="Entregas de moto rápidas e seguras. Atendimento direto com os donos. Uberlândia R$12 fixo. Até 60kg. WhatsApp direto!">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-red: #DC143C;
+            --dark-red: #B91C1C;
+            --black: #1a1a1a;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --medium-gray: #6b7280;
+            --success-green: #10B981;
+            --warning-orange: #F59E0B;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--black);
+            overflow-x: hidden;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Fixed WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            width: 56px;
+            height: 56px;
+            bottom: 20px;
+            right: 20px;
+            background: #25D366;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            animation: pulse-whatsapp 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.4);
+        }
+
+        .whatsapp-float::before {
+            content: '';
+            width: 24px;
+            height: 24px;
+            background: currentColor;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='currentColor' viewBox='0 0 24 24'%3E%3Cpath d='M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.484 3.687'/%3E%3C/svg%3E") no-repeat center;
+            mask-size: contain;
+        }
+
+        @keyframes pulse-whatsapp {
+            0% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); }
+            50% { box-shadow: 0 4px 30px rgba(37, 211, 102, 0.8); }
+            100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); }
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            background: var(--white);
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 80%;
+            height: 100vh;
+            z-index: 9999;
+            padding: 2rem;
+            box-shadow: 2px 0 20px rgba(0,0,0,0.1);
+            transition: left 0.3s ease;
+        }
+
+        .mobile-menu.active {
+            left: 0;
+        }
+
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0,0,0,0.5);
+            z-index: 9998;
+        }
+
+        .mobile-menu-overlay.active {
+            display: block;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .mobile-menu-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-links {
+            list-style: none;
+        }
+
+        .mobile-menu-links li {
+            margin-bottom: 1rem;
+        }
+
+        .mobile-menu-links a {
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: block;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        /* Header */
+        .header {
+            background: var(--white);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 999;
+            transition: all 0.3s ease;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-red);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--primary-red);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-red);
+            background: rgba(220, 20, 60, 0.1);
+        }
+
+        .nav-cta {
+            background: var(--primary-red);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(220, 20, 60, 0.3);
+            font-size: 0.9rem;
+        }
+
+        .nav-cta:hover {
+            background: var(--dark-red);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(220, 20, 60, 0.4);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--black) 0%, #2d2d2d 100%);
+            color: var(--white);
+            padding: 6rem 0 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="rgba(220,20,60,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(220,20,60,0.1)"/><circle cx="40" cy="80" r="0.8" fill="rgba(220,20,60,0.1)"/></svg>');
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            100% { transform: translateY(-50px) rotate(360deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+        }
+
+        .hero-badge {
+            background: var(--primary-red);
+            color: var(--white);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: slideInDown 0.8s ease;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 4rem);
+            margin-bottom: 1.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            animation: slideInUp 0.8s ease 0.2s both;
+        }
+
+        .hero-highlight {
+            color: var(--primary-red);
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: slideInUp 0.8s ease 0.4s both;
+        }
+
+        .hero-price {
+            background: var(--primary-red);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 15px;
+            display: inline-block;
+            margin: 1rem 0 2rem;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            font-weight: 700;
+            box-shadow: 0 8px 25px rgba(220, 20, 60, 0.3);
+            animation: slideInUp 0.8s ease 0.6s both;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: slideInUp 0.8s ease 0.8s both;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: none;
+            min-width: 200px;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: var(--primary-red);
+            color: var(--white);
+            box-shadow: 0 6px 20px rgba(220, 20, 60, 0.4);
+        }
+
+        .btn-primary:hover {
+            background: var(--dark-red);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(220, 20, 60, 0.5);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--black);
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background: transparent;
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        /* Trust Indicators */
+        .trust-indicators {
+            background: var(--white);
+            padding: 2rem 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+        }
+
+        .trust-item {
+            text-align: center;
+            color: var(--black);
+        }
+
+        .trust-number {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            font-weight: 900;
+            color: var(--primary-red);
+            display: block;
+        }
+
+        .trust-text {
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Carousel */
+        .carousel-section {
+            padding: 5rem 0;
+            background: var(--light-gray);
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            color: var(--black);
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            color: var(--medium-gray);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.6s ease;
+            width: 300%;
+        }
+
+        .carousel-slide {
+            width: 33.333%;
+            height: 400px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-align: center;
+            background: linear-gradient(45deg, var(--primary-red), var(--dark-red));
+        }
+
+        .carousel-slide:nth-child(1) {
+            background: linear-gradient(135deg, var(--primary-red), #FF6B6B);
+        }
+
+        .carousel-slide:nth-child(2) {
+            background: linear-gradient(135deg, var(--black), #4a4a4a);
+        }
+
+        .carousel-slide:nth-child(3) {
+            background: linear-gradient(135deg, var(--dark-red), var(--primary-red));
+        }
+
+        .slide-content {
+            max-width: 90%;
+            padding: 2rem;
+        }
+
+        .slide-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .slide-title {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            margin-bottom: 1rem;
+        }
+
+        .slide-text {
+            font-size: clamp(1rem, 2vw, 1.1rem);
+            opacity: 0.9;
+            font-weight: 400;
+        }
+
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .carousel-dot {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-dot.active {
+            background: var(--primary-red);
+            transform: scale(1.2);
+        }
+
+        /* Services */
+        .services {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-red), var(--dark-red));
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            border-color: var(--primary-red);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
+            border-radius: 20px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .service-title {
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--black);
+        }
+
+        .service-text {
+            color: var(--medium-gray);
+            line-height: 1.7;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+        }
+
+        /* Pricing */
+        .pricing {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--black), #2d2d2d);
+            color: var(--white);
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .pricing-card {
+            background: var(--white);
+            color: var(--black);
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .pricing-card.featured {
+            transform: scale(1.02);
+            border: 3px solid var(--primary-red);
+        }
+
+        .pricing-card.featured::before {
+            content: 'MAIS POPULAR';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--primary-red);
+            color: var(--white);
+            padding: 0.5rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .pricing-title {
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-price {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 900;
+            color: var(--primary-red);
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-period {
+            color: var(--medium-gray);
+            margin-bottom: 2rem;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            color: var(--primary-red);
+            font-weight: bold;
+            min-width: 20px;
+        }
+
+        /* Coverage */
+        .coverage {
+            padding: 5rem 0;
+            background: var(--light-gray);
+        }
+
+        .states-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .state-card {
+            background: var(--white);
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .state-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-red), var(--dark-red));
+        }
+
+        .state-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .state-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
+            border-radius: 20px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+        }
+
+        .state-title {
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--black);
+        }
+
+        .state-cities {
+            color: var(--medium-gray);
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            line-height: 1.7;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .testimonial-card {
+            background: var(--light-gray);
+            padding: 2rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            text-align: center;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: var(--medium-gray);
+            line-height: 1.7;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            color: var(--black);
+            font-size: clamp(1rem, 2vw, 1.1rem);
+        }
+
+        .testimonial-role {
+            color: var(--medium-gray);
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+        }
+
+        .stars {
+            color: #FFD700;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        /* FAQ */
+        .faq {
+            padding: 5rem 0;
+            background: var(--light-gray);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--white);
+            margin-bottom: 1rem;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            background: var(--white);
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: var(--light-gray);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            color: var(--medium-gray);
+            line-height: 1.7;
+            display: none;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+        }
+
+        .faq-answer.active {
+            display: block;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
+            color: var(--white);
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .cta-subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--black);
+            color: var(--white);
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary-red);
+        }
+
+        .footer-section p,
+        .footer-section li {
+            margin-bottom: 0.5rem;
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-red);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 1rem;
+            text-align: center;
+            opacity: 0.6;
+            font-size: 0.8rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .hero {
+                padding: 5rem 0 3rem;
+                min-height: 70vh;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .trust-indicators {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .carousel-slide {
+                height: 300px;
+            }
+
+            .services-grid,
+            .pricing-cards,
+            .states-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 0.5rem;
+            }
+
+            .hero {
+                padding: 4rem 0 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .pricing-card,
+            .service-card,
+            .state-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .trust-indicators {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu-overlay"></div>
+    <div class="mobile-menu">
+        <div class="mobile-menu-header">
+            <div class="logo">
+                <div class="logo-icon">ME</div>
+                Moto Express
+            </div>
+            <button class="mobile-menu-close">×</button>
+        </div>
+        <ul class="mobile-menu-links">
+            <li><a href="#services">Serviços</a></li>
+            <li><a href="#pricing">Preços</a></li>
+            <li><a href="#coverage">Cobertura</a></li>
+            <li><a href="#testimonials">Depoimentos</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="https://wa.me/5534999999999" class="nav-cta">Pedir Entrega</a></li>
+        </ul>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="#" class="logo">
+                    <div class="logo-icon">ME</div>
+                    Moto Express
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#services">Serviços</a></li>
+                    <li><a href="#pricing">Preços</a></li>
+                    <li><a href="#coverage">Cobertura</a></li>
+                    <li><a href="#testimonials">Depoimentos</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+                <a href="https://wa.me/5534999999999" class="nav-cta">Pedir Entrega</a>
+                <button class="mobile-menu-toggle">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">🏍️ Entregas Rápidas</div>
+                <h1>Entregas de Moto <span class="hero-highlight">Rápidas e Seguras</span></h1>
+                <p>Atendimento direto com os donos. Cobertura em MG, SP e GO. Entregas até 60kg com preço fixo em Uberlândia.</p>
+                <div class="hero-price">
+                    💰 A partir de R$ 12,00 em Uberlândia
+                </div>
+                <div class="hero-buttons">
+                    <a href="https://wa.me/5534999999999" class="btn btn-primary">
+                        📱 WhatsApp Direto
+                    </a>
+                    <a href="#services" class="btn btn-secondary">
+                        🔍 Ver Serviços
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Indicators -->
+    <section class="trust-indicators container">
+        <div class="trust-item">
+            <span class="trust-number">1000+</span>
+            <span class="trust-text">Entregas Realizadas</span>
+        </div>
+        <div class="trust-item">
+            <span class="trust-number">3</span>
+            <span class="trust-text">Estados Atendidos</span>
+        </div>
+        <div class="trust-item">
+            <span class="trust-number">60kg</span>
+            <span class="trust-text">Capacidade Máxima</span>
+        </div>
+        <div class="trust-item">
+            <span class="trust-number">24h</span>
+            <span class="trust-text">Atendimento</span>
+        </div>
+    </section>
+
+    <!-- Carousel Section -->
+    <section class="carousel-section">
+        <div class="container">
+            <h2 class="section-title">Por que escolher a Moto Express?</h2>
+            <p class="section-subtitle">Conectamos você diretamente aos donos para um atendimento personalizado e eficiente</p>
+            
+            <div class="carousel">
+                <div class="carousel-track">
+                    <div class="carousel-slide">
+                        <div class="slide-content">
+                            <div class="slide-icon">🚀</div>
+                            <h3 class="slide-title">Rapidez Garantida</h3>
+                            <p class="slide-text">Entregas expressas com tempos otimizados para sua conveniência</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-content">
+                            <div class="slide-icon">👥</div>
+                            <h3 class="slide-title">Atendimento Direto</h3>
+                            <p class="slide-text">Fale diretamente com os donos via WhatsApp, sem intermediários</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-content">
+                            <div class="slide-icon">🛡️</div>
+                            <h3 class="slide-title">Segurança Total</h3>
+                            <p class="slide-text">Seus produtos protegidos com profissionais experientes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="carousel-nav">
+                <div class="carousel-dot active"></div>
+                <div class="carousel-dot"></div>
+                <div class="carousel-dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Nossos Serviços</h2>
+            <p class="section-subtitle">Soluções completas de entrega para suas necessidades</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">📦</div>
+                    <h3 class="service-title">Entrega Express</h3>
+                    <p class="service-text">Entregas rápidas no mesmo dia com rastreamento em tempo real e comunicação direta via WhatsApp.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🏢</div>
+                    <h3 class="service-title">Empresarial</h3>
+                    <p class="service-text">Soluções personalizadas para empresas com volume regular de entregas e condições especiais.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🏠</div>
+                    <h3 class="service-title">Residencial</h3>
+                    <p class="service-text">Entregas para sua casa com horário flexível e atendimento personalizado para sua comodidade.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2 class="section-title">Preços Transparentes</h2>
+            <p class="section-subtitle">Sem taxas ocultas. Preços justos e competitivos.</p>
+            
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <h3 class="pricing-title">Uberlândia</h3>
+                    <div class="pricing-price">R$ 12</div>
+                    <div class="pricing-period">Preço fixo</div>
+                    <ul class="pricing-features">
+                        <li>Entrega em toda a cidade</li>
+                        <li>Até 60kg de capacidade</li>
+                        <li>Rastreamento em tempo real</li>
+                        <li>WhatsApp direto com o entregador</li>
+                        <li>Pagamento na entrega ou PIX</li>
+                    </ul>
+                    <a href="https://wa.me/5534999999999" class="btn btn-primary">Pedir Agora</a>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <h3 class="pricing-title">Região Metropolitana</h3>
+                    <div class="pricing-price">R$ 18</div>
+                    <div class="pricing-period">Por entrega</div>
+                    <ul class="pricing-features">
+                        <li>Cidades próximas a Uberlândia</li>
+                        <li>Até 60kg de capacidade</li>
+                        <li>Prazo otimizado</li>
+                        <li>Atendimento personalizado</li>
+                        <li>Seguro incluso</li>
+                    </ul>
+                    <a href="https://wa.me/5534999999999" class="btn btn-primary">Solicitar</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coverage -->
+    <section id="coverage" class="coverage">
+        <div class="container">
+            <h2 class="section-title">Cobertura</h2>
+            <p class="section-subtitle">Atendemos as principais cidades de Minas Gerais, São Paulo e Goiás</p>
+            
+            <div class="states-grid">
+                <div class="state-card">
+                    <div class="state-icon">🏛️</div>
+                    <h3 class="state-title">Minas Gerais</h3>
+                    <div class="state-cities">
+                        Uberlândia (R$ 12 fixo)<br>
+                        Uberaba, Araguari, Monte Alegre<br>
+                        Tupaciguara, Prata, Ituiutaba<br>
+                        <strong>E outras cidades da região</strong>
+                    </div>
+                </div>
+                
+                <div class="state-card">
+                    <div class="state-icon">🏙️</div>
+                    <h3 class="state-title">São Paulo</h3>
+                    <div class="state-cities">
+                        Franca, Ribeirão Preto<br>
+                        São José do Rio Preto<br>
+                        Barretos, Orlândia<br>
+                        <strong>E região do Triângulo</strong>
+                    </div>
+                </div>
+                
+                <div class="state-card">
+                    <div class="state-icon">🌾</div>
+                    <h3 class="state-title">Goiás</h3>
+                    <div class="state-cities">
+                        Catalão, Itumbiara<br>
+                        Rio Verde, Jataí<br>
+                        Caldas Novas, Morrinhos<br>
+                        <strong>E cidades próximas</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2 class="section-title">O que nossos clientes dizem</h2>
+            <p class="section-subtitle">Depoimentos reais de quem já utilizou nossos serviços</p>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"Serviço excelente! Entrega rápida e preço justo. O atendimento direto no WhatsApp faz toda diferença. Recomendo!"</p>
+                    <div class="testimonial-author">Maria Silva</div>
+                    <div class="testimonial-role">Empresária - Uberlândia</div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"Precisei de uma entrega urgente e eles resolveram na hora. Profissionais sérios e comprometidos. Muito obrigado!"</p>
+                    <div class="testimonial-author">João Santos</div>
+                    <div class="testimonial-role">Lojista - Uberaba</div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"Já uso há meses para minha loja. Sempre pontuais e cuidadosos. O preço fixo de R$ 12 em Uberlândia é imbatível!"</p>
+                    <div class="testimonial-author">Ana Costa</div>
+                    <div class="testimonial-role">Comerciante - Uberlândia</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <h2 class="section-title">Perguntas Frequentes</h2>
+            <p class="section-subtitle">Tire suas dúvidas sobre nossos serviços</p>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Como funciona o atendimento direto?
+                        <span>+</span>
+                    </button>
+                    <div class="faq-answer">
+                        Você fala diretamente com os donos da empresa através do WhatsApp. Sem intermediários, call centers ou robôs. Atendimento humano e personalizado para cada cliente.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Qual o prazo de entrega?
+                        <span>+</span>
+                    </button>
+                    <div class="faq-answer">
+                        Em Uberlândia, as entregas são realizadas no mesmo dia. Para outras cidades, o prazo varia conforme a distância, mas sempre buscamos a maior agilidade possível.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Como é calculado o preço para outras cidades?
+                        <span>+</span>
+                    </button>
+                    <div class="faq-answer">
+                        O preço é calculado com base na distância, peso e urgência da entrega. Entre em contato pelo WhatsApp para receber um orçamento personalizado e sem compromisso.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Há limite de peso ou tamanho?
+                        <span>+</span>
+                    </button>
+                    <div class="faq-answer">
+                        Atendemos entregas de até 60kg. Para objetos maiores ou mais pesados, consulte-nos para avaliarmos a viabilidade e condições especiais.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Quais formas de pagamento aceita?
+                        <span>+</span>
+                    </button>
+                    <div class="faq-answer">
+                        Aceitamos pagamento via PIX (com desconto), dinheiro na entrega, cartão de débito e crédito. Para empresas, oferecemos condições especiais de pagamento.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="cta-title">Pronto para fazer sua entrega?</h2>
+            <p class="cta-subtitle">Entre em contato agora mesmo e tenha sua mercadoria entregue com segurança e rapidez</p>
+            <div class="hero-buttons">
+                <a href="https://wa.me/5534999999999" class="btn btn-primary">
+                    📱 Chamar no WhatsApp
+                </a>
+                <a href="tel:+5534999999999" class="btn btn-secondary">
+                    📞 Ligar Agora
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Moto Express</h3>
+                    <p>Entregas rápidas e seguras com atendimento direto. Sua mercadoria em boas mãos.</p>
+                    <p><strong>WhatsApp:</strong> (34) 99999-9999</p>
+                    <p><strong>Email:</strong> contato@motoexpress.com</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Serviços</h3>
+                    <ul>
+                        <li><a href="#services">Entrega Express</a></li>
+                        <li><a href="#services">Empresarial</a></li>
+                        <li><a href="#services">Residencial</a></li>
+                        <li><a href="#services">Emergencial</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Cobertura</h3>
+                    <ul>
+                        <li><a href="#coverage">Minas Gerais</a></li>
+                        <li><a href="#coverage">São Paulo</a></li>
+                        <li><a href="#coverage">Goiás</a></li>
+                        <li><a href="#pricing">Preços</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Atendimento</h3>
+                    <ul>
+                        <li>Segunda a Sábado: 7h às 22h</li>
+                        <li>Domingo: 8h às 18h</li>
+                        <li>Emergencial: 24h</li>
+                        <li><a href="#faq">Perguntas Frequentes</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Moto Express. Todos os direitos reservados. | Desenvolvido com ❤️ para conectar pessoas</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/5534999999999" class="whatsapp-float" target="_blank"></a>
+
+    <script>
+        // Mobile Menu
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
+        const mobileMenuClose = document.querySelector('.mobile-menu-close');
+
+        function openMobileMenu() {
+            mobileMenu.classList.add('active');
+            mobileMenuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        mobileMenuToggle.addEventListener('click', openMobileMenu);
+        mobileMenuClose.addEventListener('click', closeMobileMenu);
+        mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+
+        // Carousel
+        const carouselTrack = document.querySelector('.carousel-track');
+        const carouselDots = document.querySelectorAll('.carousel-dot');
+        let currentSlide = 0;
+        const totalSlides = 3;
+
+        function updateCarousel() {
+            const translateX = -(currentSlide * 33.333);
+            carouselTrack.style.transform = `translateX(${translateX}%)`;
+            
+            carouselDots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+        }
+
+        carouselDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentSlide = index;
+                updateCarousel();
+            });
+        });
+
+        // Auto advance carousel
+        setInterval(nextSlide, 4000);
+
+        // FAQ
+        const faqQuestions = document.querySelectorAll('.faq-question');
+
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                const answer = faqItem.querySelector('.faq-answer');
+                const icon = question.querySelector('span');
+                
+                // Close all other FAQs
+                faqQuestions.forEach(otherQuestion => {
+                    if (otherQuestion !== question) {
+                        const otherItem = otherQuestion.parentElement;
+                        const otherAnswer = otherItem.querySelector('.faq-answer');
+                        const otherIcon = otherQuestion.querySelector('span');
+                        
+                        otherAnswer.classList.remove('active');
+                        otherIcon.textContent = '+';
+                    }
+                });
+                
+                // Toggle current FAQ
+                const isActive = answer.classList.contains('active');
+                answer.classList.toggle('active');
+                icon.textContent = isActive ? '+' : '−';
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    closeMobileMenu();
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = 'var(--white)';
+                header.style.backdropFilter = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

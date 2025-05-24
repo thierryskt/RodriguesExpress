@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moto Express | Entregas Rápidas em MG, SP e GO - A partir de R$12</title>
+    <meta name="description" content="Entregas de moto rápidas e seguras. Atendimento direto com os donos. Uberlândia R$12 fixo. Até 60kg. WhatsApp direto!">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-red: #DC143C;
+            --dark-red: #B91C1C;
+            --black: #1a1a1a;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --medium-gray: #6b7280;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--black);
+            overflow-x: hidden;
+        }
+
+        /* Fixed WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 25px;
+            right: 25px;
+            background: #25D366;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            animation: pulse-whatsapp 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.4);
+        }
+
+        @keyframes pulse-whatsapp {
+            0% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); }
+            50% { box-shadow: 0 4px 30px rgba(37, 211, 102, 0.8); }
+            100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); }
+        }
+
+        /* Header */
+        .header {
+            background: var(--white);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 999;
+            transition: all 0.3s ease;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary-red);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-red);
+            background: rgba(220, 20, 60, 0.1);
+        }
+
+        .nav-cta {
+            background: var(--primary-red);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(220, 20, 60, 0.3);
+        }
+
+        .nav-cta:hover {
+            background: var(--dark-red);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(220, 20, 60, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--black) 0%, #2d2d2d 100%);
+            color: var(--white);
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="rgba(220,20,60,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(220,20,60,0.1)"/><circle cx="40" cy="80" r="0.8" fill="rgba(220,20,60,0.1)"/></svg>');
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            100% { transform: translateY(-50px) rotate(360deg); }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            background: var(--primary-red);
+            color: var(--white);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: slideInDown 0.8s ease;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            animation: slideInUp 0.8s ease 0.2s both;
+        }
+
+        .hero-highlight {
+            color: var(--primary-red);
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: slideInUp 0.8s ease 0.4s both;
+        }
+
+        .hero-price {
+            background: var(--primary-red);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 15px;
+            display: inline-block;
+            margin: 1rem 0 2rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            box-shadow: 0 8px 25px rgba(220, 20, 60, 0.3);
+            animation: slideInUp 0.8s ease 0.6s both;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: slideInUp 0.8s ease 0.8s both;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--primary-red);
+            color: var(--white);
+            box-shadow: 0 6px 20px rgba(220, 20, 60, 0.4);
+        }
+
+        .btn-primary:hover {
+            background: var(--dark-red);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(220, 20, 60, 0.5);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--black);
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background: transparent;
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        /* Trust Indicators */
+        .trust-indicators {
+            background: var(--white);
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+        }
+
+        .trust-item {
+            text-align: center;
+            color: var(--black);
+        }
+
+        .trust-number {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--primary-red);
+            display: block;
+        }
+
+        .trust-text {
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Carousel */
+        .carousel-section {
+            padding: 5rem 2rem;
+            background: var(--light-gray);
+        }
+
+        .carousel-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            color: var(--black);
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--medium-gray);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+            margin-bottom: 2rem;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.6s ease;
+            width: 300%;
+        }
+
+        .carousel-slide {
+            width: 33.333%;
+            height: 450px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-align: center;
+            background: linear-gradient(45deg, var(--primary-red), var(--dark-red));
+        }
+
+        .carousel-slide:nth-child(1) {
+            background: linear-gradient(135deg, var(--primary-red), #FF6B6B);
+        }
+
+        .carousel-slide:nth-child(2) {
+            background: linear-gradient(135deg, var(--black), #4a4a4a);
+        }
+
+        .carousel-slide:nth-child(3) {
+            background: linear-gradient(135deg, var(--dark-red), var(--primary-red));
+        }
+
+        .slide-content {
+            max-width: 400px;
+            padding: 2rem;
+        }
+
+        .slide-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .slide-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .slide-text {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .carousel-dot {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-dot.active {
+            background: var(--primary-red);
+            transform: scale(1.2);
+        }
+
+        /* Services */
+        .services {
+            padding: 5rem 2rem;
+            background: var(--white);
+        }
+
+        .services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-red), var(--dark-red));
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            border-color: var(--primary-red);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
+            border-radius: 20px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 2rem;
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--black);
+        }
+
+        .service-text {
+            color: var(--medium-gray);
+            line-height: 1.7;
+        }
+
+        /* Pricing */
+        .pricing {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, var(--black), #2d2d2d);
+            color: var(--white);
+        }
+
+        .pricing-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .pricing-card {
+            background: var(--white);
+            color: var(--black);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card.featured {
+            transform: scale(1.05);
+            border: 3px solid var(--primary-red);
+        }
+
+        .pricing-card.featured::before {
+            content: 'MAIS POPULAR';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--primary-red);
+            color: var(--white);
+            padding: 0.5rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .pricing-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-price {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--primary-red);
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-period {
+            color: var(--medium-gray);
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            color: var(--primary-red);
+            font-weight: bold;
+        }
+
+        /* Coverage */
+        .coverage {
+            padding: 5rem 2rem;
+            background: var(--light-gray);
+        }
+
+        .coverage-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .states-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .state-card {
+            background: var(--white);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .state-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-red), var(--dark-red));
+        }
+
+        .state-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .state-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .state-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--black);
+        }
+
+        .state-cities {
+            color: var(--medium-gray);
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 5rem 2rem;
+            background: var(--white);
+        }
+
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .testimonial-card {
+            background: var(--light-gray);
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: var(--medium-gray);
+            line-height: 1.7;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            color: var(--black);
+        }
+
+        .testimonial-role {
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+        }
+
+        .stars {
+            color: #FFD700;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        /* FAQ */
+        .faq {
+            padding: 5rem 2rem;
+            background: var(--light-gray);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--white);
+            margin-bottom: 1rem;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .faq-question {
+            padding: 1.5rem 2rem;
+            background: var(--white);
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: var(--light-gray);
+        }
+
+        .faq-answer {
+            padding: 0 2rem 1.5rem;
+            color: var(--medium-gray);
+            line-height: 1.7;
+            display: none;
+        }
+
+        .faq-answer.active {
+            display: block;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
+            color: var(--white);
+            text-align: center;
+        }
+
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .cta-text {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            background: var(--white);
+            color: var(--primary-red);
+            padding: 1.25rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.3);
+        }
+
+        .cta-btn.secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .cta-btn.secondary:hover {
+            background: var(--white);
+            color: var(--primary-red);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--black);
+            color: var(--white);
+            text-align: center;
+            padding: 3rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary-red);
+            margin-bottom: 1rem;
+        }
+
+        .footer-text {
+            opacity: 0.8;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--primary-red);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+
+            .trust-indicators {
+                gap: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .pricing-card.featured {
+                transform: none;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+
+            .cta-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .pulse-element {
+            animation: pulse-custom 2s infinite;
+        }
+
+        @keyframes pulse-custom {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Fixed WhatsApp Button -->
+    <a href="https://wa.me/5534999999999?text=Olá! Vi seu site e gostaria de saber mais sobre as entregas!" class="whatsapp-float" target="_blank">
+        💬
+    </a>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">
+                🏍️ Moto Express
+            </div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#precos">Preços</a></li>
+                <li><a href="#cobertura">Cobertura</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+            <a href="https://wa.me/5534999999999?text=Olá! Quero fazer um orçamento de entrega!" class="nav-cta">
+                📱 Orçamento
+            </a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <div class="hero-badge">⚡ Entrega Rápida Garantida</div>
+            <h1>Entregas de Moto <span class="hero-highlight">Rápidas e Seguras</span></h1>
+            <p>Atendimento direto com os donos via WhatsApp. Transportamos até <strong>60kg</strong> com total segurança para Uberlândia, São Paulo e Goiás.</p>
+            
+            <div class="hero-price pulse-element">
+                🎯 Uberlândia: <strong>R$ 12,00 fixo</strong> para comércios
+            </div>
+
+            <div class="hero-buttons">
+                <a href="https://wa.me/5534999999999?text=Olá! Quero solicitar uma entrega agora!" class="btn btn-primary pulse-element">
+                    🚀 Solicitar Entrega
+                </a>
+                <a href="https://wa.me/5534999999999?text=Olá! Gostaria de saber mais sobre os preços!" class="btn btn-secondary">
+                    💰 Ver Preços
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Indicators -->
+    <div class="trust-indicators">
+        <div class="trust-item">
+            <span class="trust-number">+500</span>
+            <span class="trust-text">Entregas Realizadas</span>
+        </div>
+        <div class="trust-item">
+            <span class="trust-number">60kg</span>
+            <span class="trust-text">Peso Máximo</span>
+        </div>
+        <div class="trust-item">
+            <span class="trust-number">3</span>
+            <span class="trust-text">Estados Atendidos</span>
+        </div>
+        <div class="trust-item">
+            <span class="trust-number">100%</span>
+            <span class="trust-text">Atendimento Direto</span>
+        </div>
+    </div>
+
+    <!-- Carousel -->
+    <section class="carousel-section">
+        <div class="carousel-container">
+            <h2 class="section-title animate-on-scroll">Nossa Entrega em Ação</h2>
+            <p class="section-subtitle animate-on-scroll">Veja como trabalhamos com dedicação para entregar seu produto com segurança e rapidez</p>
+            
+            <div class="carousel">
+                <div class="carousel-track" id="carouselTrack">
+                    <div class="carousel-slide">
+                        <div class="slide-content">
+                            <span class="slide-icon">🏍️</span>
+                            <div class="slide-title">Moto em Ação</div>
+                            <div class="slide-text">Nossos motoboys experientes percorrem a cidade com agilidade e segurança total</div>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-content">
+                            <span class="slide-icon">🤝</span>
+                            <div class="slide-title">Entrega Cuidadosa</div>
+                            <div class="slide-text">Cada produto é tratado com o máximo cuidado, do pickup até a entrega final</div>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="slide-content">
+                            <span class="slide-icon">😊</span>
+                            <div class="slide-title">Cliente Satisfeito</div>
+                            <div class="slide-text">A felicidade dos nossos clientes é nossa maior recompensa e motivação</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-nav">
+                <span class="carousel-dot active" onclick="goToSlide(0)"></span>
+                <span class="carousel-dot" onclick="goToSlide(1)"></span>
+                <span class="carousel-dot" onclick="goToSlide(2)"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="services" id="servicos">
+        <div class="services-container">
+            <h2 class="section-title animate-on-scroll">Por Que Escolher a Moto Express?</h2>
+            <p class="section-subtitle animate-on-scroll">Somos uma empresa familiar que trata cada entrega como se fosse nossa</p>
+            
+            <div class="services-grid">
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">⚡</div>
+                    <h3 class="service-title">Entrega Ultrarrápida</h3>
+                    <p class="service-text">Comprometidos com prazos. Sua encomenda chega quando você precisa, sem atrasos nem desculpas.</p>
+                </div>
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">👨‍👩‍👧‍👦</div>
+                    <h3 class="service-title">Atendimento Familiar</h3>
+                    <p class="service-text">Atendimento direto comigo e minha esposa. Nada de call center, você fala direto com quem resolve.</p>
+                </div>
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">🛡️</div>
+                    <h3 class="service-title">Segurança Total</h3>
+                    <p class="service-text">Suas encomendas protegidas do início ao fim. Experiência e cuidado em cada entrega até 60kg.</p>
+                </div>
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">💰</div>
+                    <h3 class="service-title">Preço Justo</h3>
+                    <p class="service-text">Em Uberlândia: R$ 12,00 fixo para comércios. Outras regiões: preço por quilometragem.</p>
+                </div>
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">📱</div>
+                    <h3 class="service-title">WhatsApp Direto</h3>
+                    <p class="service-text">Contato direto e rápido pelo WhatsApp. Sem burocracias, sem demoras, sem complicações.</p>
+                </div>
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon">📍</div>
+                    <h3 class="service-title">Cobertura Ampla</h3>
+                    <p class="service-text">Atendemos Uberlândia (MG), cidades selecionadas de São Paulo (SP) e Goiás (GO).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing" id="precos">
+        <div class="pricing-container">
+            <h2 class="section-title animate-on-scroll" style="color: white;">Preços Transparentes</h2>
+            <p class="section-subtitle animate-on-scroll" style="color: rgba(255,255,255,0.8);">Sem surpresas, sem taxas escondidas. Você sabe exatamente quanto vai pagar</p>
+            
+            <div class="pricing-cards">
+                <div class="pricing-card animate-on-scroll">
+                    <h3 class="pricing-title">Outras Regiões</h3>
+                    <div class="pricing-price">Por KM</div>
+                    <div class="pricing-period">Preço calculado pela distância</div>
+                    <ul class="pricing-features">
+                        <li>São Paulo (SP) - Cidades selecionadas</li>
+                        <li>Goiás (GO) - Principais cidades</li>
+                        <li>Até 60kg de peso</li>
+                        <li>Atendimento via WhatsApp</li>
+                        <li>Orçamento gratuito</li>
+                    </ul>
+                    <a href="https://wa.me/5534999999999?text=Olá! Quero orçamento para entrega fora de Uberlândia!" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                        📱 Solicitar Orçamento
+                    </a>
+                </div>
+                
+                <div class="pricing-card featured animate-on-scroll">
+                    <h3 class="pricing-title">Uberlândia (MG)</h3>
+                    <div class="pricing-price">R$ 12</div>
+                    <div class="pricing-period">Preço fixo para comércios</div>
+                    <ul class="pricing-features">
+                        <li>Cobertura completa da cidade</li>
+                        <li>Até 60kg de peso</li>
+                        <li>Entrega rápida garantida</li>
+                        <li>Atendimento direto com os donos</li>
+                        <li>Sem taxas extras</li>
+                    </ul>
+                    <a href="https://wa.me/5534999999999?text=Olá! Quero solicitar entrega em Uberlândia por R$12!" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                        🚀 Solicitar Agora
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coverage -->
+    <section class="coverage" id="cobertura">
+        <div class="coverage-container">
+            <h2 class="section-title animate-on-scroll">Regiões Atendidas</h2>
+            <p class="section-subtitle animate-on-scroll">Cobrimos as principais cidades de três estados com qualidade e pontualidade</p>
+            
+            <div class="states-grid">
+                <div class="state-card animate-on-scroll">
+                    <div class="state-icon">🏙️</div>
+                    <h3 class="state-title">Minas Gerais</h3>
+                    <div class="state-cities">
+                        <strong>📍 Uberlândia</strong><br>
+                        Cobertura completa em toda a cidade<br>
+                        <span style="color: var(--primary-red); font-weight: bold;">Preço fixo: R$ 12,00 para comércios</span><br>
+                        Região metropolitana inclusa
+                    </div>
+                </div>
+                
+                <div class="state-card animate-on-scroll">
+                    <div class="state-icon">🌆</div>
+                    <h3 class="state-title">São Paulo</h3>
+                    <div class="state-cities">
+                        <strong>📍 Cidades Selecionadas</strong><br>
+                        Principais regiões do estado<br>
+                        Preço calculado por quilometragem<br>
+                        <em>Consulte disponibilidade via WhatsApp</em>
+                    </div>
+                </div>
+                
+                <div class="state-card animate-on-scroll">
+                    <div class="state-icon">🏘️</div>
+                    <h3 class="state-title">Goiás</h3>
+                    <div class="state-cities">
+                        <strong>📍 Principais Cidades</strong><br>
+                        Cobertura estratégica no estado<br>
+                        Preço calculado por quilometragem<br>
+                        <em>Entre em contato para confirmar sua região</em>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 3rem; padding: 2rem; background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                <h4 style="color: var(--primary-red); font-size: 1.3rem; margin-bottom: 1rem;">
+                    🤔 Sua cidade não está listada?
+                </h4>
+                <p style="color: var(--medium-gray); margin-bottom: 1.5rem;">
+                    Entre em contato conosco pelo WhatsApp! Estamos sempre expandindo nossa área de cobertura e podemos avaliar sua região.
+                </p>
+                <a href="https://wa.me/5534999999999?text=Olá! Gostaria de saber se vocês atendem minha cidade!" class="btn btn-primary">
+                    📱 Consultar Minha Região
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="testimonials-container">
+            <h2 class="section-title animate-on-scroll">O Que Nossos Clientes Dizem</h2>
+            <p class="section-subtitle animate-on-scroll">A satisfação dos nossos clientes é nossa maior conquista</p>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card animate-on-scroll">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">
+                        "Excelente serviço! Sempre pontuais e muito cuidadosos com as entregas. O atendimento direto com os donos faz toda a diferença."
+                    </p>
+                    <div class="testimonial-author">Maria Silva</div>
+                    <div class="testimonial-role">Proprietária de Loja de Roupas</div>
+                </div>
+                
+                <div class="testimonial-card animate-on-scroll">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">
+                        "Preço justo e entrega rápida! Em Uberlândia pagamos apenas R$ 12 e nunca tivemos problemas. Super recomendo!"
+                    </p>
+                    <div class="testimonial-author">João Santos</div>
+                    <div class="testimonial-role">Gerente de Farmácia</div>
+                </div>
+                
+                <div class="testimonial-card animate-on-scroll">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">
+                        "Já uso o serviço há meses e nunca me decepcionaram. Pessoal muito gente boa e confiável. Parabéns pelo trabalho!"
+                    </p>
+                    <div class="testimonial-author">Ana Costa</div>
+                    <div class="testimonial-role">Proprietária de Restaurante</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+        <div class="faq-container">
+            <h2 class="section-title animate-on-scroll" style="text-align: center;">Perguntas Frequentes</h2>
+            <p class="section-subtitle animate-on-scroll" style="text-align: center;">Tire suas dúvidas mais comuns sobre nosso serviço</p>
+            
+            <div class="faq-item animate-on-scroll">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Qual o peso máximo que vocês transportam?
+                    <span>+</span>
+                </button>
+                <div class="faq-answer">
+                    Transportamos até 60kg com total segurança. Para cargas mais pesadas, consulte-nos via WhatsApp para avaliarmos a viabilidade.
+                </div>
+            </div>
+            
+            <div class="faq-item animate-on-scroll">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Como funciona o preço em Uberlândia?
+                    <span>+</span>
+                </button>
+                <div class="faq-answer">
+                    Em Uberlândia, cobramos R$ 12,00 fixo para comércios e lojistas. Este preço vale para toda a cidade, sem taxas extras ou surpresas.
+                </div>
+            </div>
+            
+            <div class="faq-item animate-on-scroll">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Vocês atendem outras cidades?
+                    <span>+</span>
+                </button>
+                <div class="faq-answer">
+                    Sim! Atendemos cidades selecionadas de São Paulo (SP) e Goiás (GO). Para essas regiões, o preço é calculado por quilometragem. Entre em contato para orçamento.
+                </div>
+            </div>
+            
+            <div class="faq-item animate-on-scroll">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Como faço para solicitar uma entrega?
+                    <span>+</span>
+                </button>
+                <div class="faq-answer">
+                    É muito simples! Clique em qualquer botão de WhatsApp do site ou no botão flutuante. Você falará diretamente comigo ou minha esposa para agilizar sua entrega.
+                </div>
+            </div>
+            
+            <div class="faq-item animate-on-scroll">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Qual o tempo de entrega?
+                    <span>+</span>
+                </button>
+                <div class="faq-answer">
+                    Em Uberlândia, geralmente entregamos no mesmo dia ou em até 24h. Para outras cidades, o prazo varia conforme a distância. Sempre informamos o prazo antes de confirmar.
+                </div>
+            </div>
+            
+            <div class="faq-item animate-on-scroll">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Vocês emitem nota fiscal?
+                    <span>+</span>
+                </button>
+                <div class="faq-answer">
+                    Sim, emitimos nota fiscal para todas as entregas quando solicitado. Somos uma empresa regularizada e trabalhamos com total transparência.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contato">
+        <div class="cta-container">
+            <h2 class="cta-title animate-on-scroll">Pronto para Sua Próxima Entrega?</h2>
+            <p class="cta-text animate-on-scroll">
+                Entre em contato agora mesmo! Atendimento direto com os donos via WhatsApp. 
+                Resposta rápida garantida!
+            </p>
+            
+            <div class="cta-buttons">
+                <a href="https://wa.me/5534999999999?text=Olá! Preciso de uma entrega urgente!" class="cta-btn pulse-element">
+                    🚀 Entrega Urgente
+                </a>
+                <a href="https://wa.me/5534999999999?text=Olá! Gostaria de fazer um orçamento!" class="cta-btn secondary">
+                    💰 Solicitar Orçamento
+                </a>
+            </div>
+            
+            <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(255,255,255,0.1); border-radius: 15px;">
+                <p style="margin: 0; font-size: 1.1rem;">
+                    📱 <strong>WhatsApp direto:</strong> Sem call center, sem espera<br>
+                    ⚡ <strong>Resposta rápida:</strong> Geralmente em poucos minutos<br>
+                    🤝 <strong>Atendimento familiar:</strong> Você fala direto conosco
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">🏍️ Moto Express</div>
+            <p class="footer-text">
+                Entregas rápidas e seguras com atendimento familiar.<br>
+                Uberlândia (MG) • São Paulo (SP) • Goiás (GO)
+            </p>
+            
+            <div class="footer-links">
+                <a href="#inicio">Início</a>
+                <a href="#servicos">Serviços</a>
+                <a href="#precos">Preços</a>
+                <a href="#cobertura">Cobertura</a>
+                <a href="https://wa.me/5534999999999">WhatsApp</a>
+            </div>
+            
+            <p style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #333; opacity: 0.6;">
+                &copy; 2024 Moto Express. Todos os direitos reservados.<br>
+                <small>Empresa familiar de entregas rápidas e confiáveis</small>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Carousel functionality
+        let currentSlide = 0;
+        const totalSlides = 3;
+        const track = document.getElementById('carouselTrack');
+        const dots = document.querySelectorAll('.carousel-dot');
+
+        function goToSlide(n) {
+            currentSlide = n;
+            track.style.transform = `translateX(-${currentSlide * 33.333}%)`;
+            
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            goToSlide(currentSlide);
+        }
+
+        // Auto-advance carousel
+        setInterval(nextSlide, 5000);
+
+        // FAQ functionality
+        function toggleFaq(button) {
+            const answer = button.nextElementSibling;
+            const icon = button.querySelector('span');
+            
+            if (answer.classList.contains('active')) {
+                answer.classList.remove('active');
+                icon.textContent = '+';
+            } else {
+                // Close all other FAQs
+                document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('active'));
+                document.querySelectorAll('.faq-question span').forEach(s => s.textContent = '+');
+                
+                // Open clicked FAQ
+                answer.classList.add('active');
+                icon.textContent = '−';
+            }
+        }
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = 'var(--white)';
+                header.style.backdropFilter = 'none';
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with animation class
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add some interactive effects
+        document.querySelectorAll('.btn, .cta-btn').forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px) scale(1.02)';
+            });
+            
+            btn.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Prevent carousel from auto-advancing when user is interacting
+        let userInteracting = false;
+        document.querySelectorAll('.carousel-dot').forEach(dot => {
+            dot.addEventListener('click', () => {
+                userInteracting = true;
+                setTimeout(() => userInteracting = false, 10000);
+            });
+        });
+
+        // Update auto-advance to respect user interaction
+        setInterval(() => {
+            if (!userInteracting) {
+                nextSlide();
+            }
+        }, 5000);
+    </script>
+</body>
+</html>
